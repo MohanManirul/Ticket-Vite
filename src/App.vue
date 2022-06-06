@@ -1,21 +1,17 @@
 <template>
   <header>
-    <h3>{{ msg }} hello</h3>
+    <h3>{{ msg }} hello</h3> <hr>
+
   </header>
-
-  <div class="container">
-    <h1>New User Registration</h1>
-    <label>Full Name</label><br>
-    <input type="text" placeholder="Enter your full name" v-model="formData.firstName">
-  </div>
-  <hr>
-  <label for="">About You</label> <hr/>
-  <textarea v-model="formData.aboutYou"></textarea>
-  <hr>
-
-  <div v-for="(value , key) in formData" :key="key">
-    <strong>{{key}} : </strong> {{ value }}
-  </div>
+  <label>Gender</label>
+  <label><input type="radio"  value="M" v-model="formData.gender">Male</label>
+  <label><input type="radio" checked="checked" value="F" v-model="formData.gender">Female</label>
+  <label><input type="radio" value="O" v-model="formData.gender">Other</label>
+ 
+ <hr>
+<div>
+  <h3>Gender : {{ formData.gender }} </h3>
+</div>
 </template>
 
 <script>
@@ -26,7 +22,8 @@ export default {
       msg : "Vue 3 bangla Tutorial",
       formData:{
         firstName:"",
-        aboutYou : ""
+        aboutYou : "",
+        gender : ""
       }
     };
   },
