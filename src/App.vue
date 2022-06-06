@@ -34,18 +34,28 @@
 </template>
 
 <script>
-import CreditCard from "./CreditCard.vue";
+import ContactDetails from "./ContactDetails.vue";
 export default {
   data() {
     return {
       msg: "Vue3 Vite Project",
-      tabs:["Login" , "Register"],
-      activeTab:"Login"
+      tabs:["Login" , "Register", "ContactDetails"],
+      activeTab:"Login",
+      name: "Mamunur Rashid",
+      website:"https://rimonbd.com",
+      address:"Dhaka"
     };
   },
   methods: {},
+  provide(){
+    return{
+      name:this.name,
+      website:this.website,
+      address : this.website
+    }
+  },
   components: {
-    CreditCard,
+    ContactDetails
   },
 };
 </script>

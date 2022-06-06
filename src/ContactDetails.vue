@@ -12,7 +12,8 @@
 
 <script>
   export default {
-      props :  ["name" , "website" , "address"],
+      inject : ["name" , "website" , "address"],
+      props : {},
    data(){
      return {
        msg:"Welcome to vue js"
