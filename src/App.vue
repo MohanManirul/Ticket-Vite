@@ -36,7 +36,7 @@ export default {
         aboutYou : "",
         gender : "",
         language:"",
-        skills:""
+        skills:[]
       }
     };
   },
