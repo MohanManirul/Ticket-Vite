@@ -3,55 +3,38 @@
     <h3>{{ msg }} hello</h3>
   </header>
 
-  <div>
-    <product-card 
- 
-      v-for="product in products"
-      :key="product.name"
-      :product="product" 
-      @buy-now-clicked="buyNow"
-      @add-to-cart-clicked="addToCart"
-    
-    >
-
-    </product-card>
+  <div class="container">
+    <h3>Credit Card Input</h3>
+    <credit-card
+      v-model:nameOnCard="nameOnCard"
+      v-model:cardNumber="cardNumber"
+      v-model:expiry="expiry"
+      v-model:cvv="cvv"
+    ></credit-card>
+    <br />
+    <hr />
+    <p>Name : {{ nameOnCard }}</p>
+    <p>cardNumber : {{ cardNumber }}</p>
+    <p>expiry : {{ expiry }}</p>
+    <p>CVV : {{ cvv }}</p>
   </div>
-
 </template>
 
 <script>
-import ProductCard from "./ProductCard.vue";
+import CreditCard from "./CreditCard.vue";
 export default {
-  data(){
+  data() {
     return {
-      msg: "Welcome to  Vue 3 Bangla Tutorial",
-      products: [{
-        name: "Apple Iphone 12 Pro",
-        thumbnail:"https://static.toiimg.com/thumb/resizemode-4,msid-79729978,imgsize-200,width-1200/79729978.jpg",
-        price: "12600"
-      },
-      {
-        name: "Apple Iphone 12 Pro",
-        thumbnail:"https://static.toiimg.com/thumb/resizemode-4,msid-79729978,imgsize-200,width-1200/79729978.jpg",
-        price: "12600"
-      },
-    {
-        name: "Apple Iphone 12 Pro",
-        thumbnail:"https://static.toiimg.com/thumb/resizemode-4,msid-79729978,imgsize-200,width-1200/79729978.jpg",
-        price: "12600"
-      }]
+      msg: "Vue3 Vite Project",
+      nameOnCard: "Mr.",
+      cardNumber: "",
+      expiry: "",
+      cvv: "",
     };
   },
-  methods:{
-    buyNow(product){
-      console.log(product);
-    },
-    addToCart(){
-      console.log("add to cart clicked...");
-    }
-  }, 
+  methods: {},
   components: {
-    ProductCard
-  }
-}
+    CreditCard,
+  },
+};
 </script>
