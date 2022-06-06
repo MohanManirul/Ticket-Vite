@@ -4,13 +4,24 @@
 
   </header>
   <label>Gender</label>
-  <label><input type="radio"  value="M" v-model="formData.gender">Male</label>
-  <label><input type="radio" checked="checked" value="F" v-model="formData.gender">Female</label>
-  <label><input type="radio" value="O" v-model="formData.gender">Other</label>
+
+  <select  v-model="formData.language">
+    <option value="">Select One</option>
+    <option value="B">Bangla</option>
+    <option value="E">English</option>
+  </select>
  
  <hr>
+ <select multiple v-model="formData.skills">
+   <option>HTML</option>
+   <option>CSS</option>
+   <option>JavaScript</option>
+   <option>PHP</option>
+   <option>MySql</option>
+ </select>
 <div>
-  <h3>Gender : {{ formData.gender }} </h3>
+  <h3>Skills : {{ formData.skills }} </h3>
+  <h3>Gender : {{ formData.language }} </h3>
 </div>
 </template>
 
@@ -23,7 +34,9 @@ export default {
       formData:{
         firstName:"",
         aboutYou : "",
-        gender : ""
+        gender : "",
+        language:"",
+        skills:""
       }
     };
   },
