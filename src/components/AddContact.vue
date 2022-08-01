@@ -3,6 +3,14 @@
         <h2>Add Contact</h2>
        <hr/>
       <div class="col-md-6">
+        <div class="alert alert-danger mt-4" v-if="errors.length">
+            <ul class="mb-0">
+                <li v-for="(error , index) in errors" :key="index">
+                    {{ error }}
+                </li>
+            </ul>
+        </div>
+
          <form @submit.prevent="saveContact" novalidate>
             <div class="form-group">
                 <label class="form-label mt-4">Name : </label>
@@ -36,11 +44,11 @@ import axios from 'axios';
         name:'AddContact',
         data(){
             return {
-                contact:{},
-                 name:'',
-                email:'',
-                designation:'',
-                contact_no:'',
+                contact: {},
+                 name: '',
+                email: '',
+                designation: '',
+                contact_no: '',
                 errors:[]
                 
             }
@@ -61,13 +69,13 @@ import axios from 'axios';
                     this.errors.push("contact_no is required");
                 }
                 if(!this.errors.length){
-                    let formData = new formData();
+                    let formData = new FormData();
                     formData.append('name', this.contact.name);
                     formData.append('email', this.contact.email);
                     formData.append('designation', this.contact.designation);
                     formData.append('contact_no', this.contact.contact_no);
                     
-                    let url = "http://127.0.0.1:8000/api/save_contacts"
+                    let url = "http://127.0.0.1:8000/api/save_contact"
                         await axios.post(url,formData).then((response) =>{
                             console.log(response);
                             if(response.status == 200){
