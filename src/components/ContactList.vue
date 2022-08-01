@@ -10,6 +10,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Designation</th>
                 <th scope="col">Contact No</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
 
@@ -20,6 +21,8 @@
                 <th scope="row">{{ contact.email }}</th>
                 <th scope="row">{{ contact.designation }}</th>
                 <th scope="row">{{ contact.contact_no }}</th>
+                <th scope="row"><router-link :to= "{ name:'EditContact', params:{id:contact.id} }" class="btn btn-primary">Edit</router-link></th>
+                <th scope="row"><button class="btn btn-danger" @click.prevent="deleteContact(contact.id)">Delete</button></th>
             </tr>
         </tbody>
     </table>
@@ -48,7 +51,17 @@
            }).catch(error => {
                 console.log(error);
            });
-           } 
+           },
+           async deleteContact(id){
+                let url = `http://127.0.0.1:8000/api/delete_contact/${id}`
+                await axios.delete(url).then(response => {
+                    if(response.data.code == 200){
+                        alert(response.data.message);
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+           }
         },
         mounted(){
             console.log('Contact List Component Mounted');

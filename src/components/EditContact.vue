@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <h2>Add Contact</h2>
+        <h2>Edit Contact</h2>
        <hr/>
       <div class="col-md-6">
-         <form @submit.prevent="saveContact" novalidate>
+         <form @submit.prevent="updateContact" novalidate>
             <div class="form-group">
                 <label class="form-label mt-4">Name : </label>
                 <input class="form-control" type="text" placeholder="Enter your name" v-model="contact.name">
@@ -33,21 +33,32 @@
 import axios from 'axios';
 
     export default {        
-        name:'AddContact',
+        name:'EditContact',
         data(){
             return {
-                contact:{},
-                 name:'',
-                email:'',
-                designation:'',
-                contact_no:'',
-                errors:[]
+                contact:{
+                    name:'',
+                    email:'',
+                    designation:'',
+                    contact_no:'',
+                    errors:[]
+                }
                 
             }
         },
+        created(){
+           this.getContactbyId(); 
+        },
         methods : {
-          async  saveContact(){
-                this.errors = [];
+          async getContactbyId(){
+            let url = `http://127.0.0.1:8000/api/get_contact/${this.$route.params.id}`;
+            await axios.get(url).then(response => {
+                console.log(response);
+                this.contact = response.data;
+            });
+          },
+          async updateContact(){
+             this.errors = [];
                 if(!this.contact.name){
                     this.errors.push("name is required");
                 }
@@ -67,14 +78,10 @@ import axios from 'axios';
                     formData.append('designation', this.contact.designation);
                     formData.append('contact_no', this.contact.contact_no);
                     
-                    let url = "http://127.0.0.1:8000/api/save_contacts"
+                    let url = "http://127.0.0.1:8000/api/update_contacts/${this.$params.id}"
                         await axios.post(url,formData).then((response) =>{
                             console.log(response);
                             if(response.status == 200){
-                                this.contact.name ='' ;
-                                this.contact.email ='' ;
-                                this.contact.designation = '' ;
-                                this.contact.contact_no = '' ;
                                alert(response.data.message);
                             }else{
                                 consile.log('errors');
@@ -83,7 +90,10 @@ import axios from 'axios';
                             this.errors.push(error.response);
                         });
                 }
-            }
+          }
+        },
+        mounted: function(){
+            console.log('Edit Component from component loaded...');
         }
     }
 </script>
