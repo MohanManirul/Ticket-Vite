@@ -33,7 +33,7 @@
 <script>
     import axios from 'axios';
     export default {
-        name:'ContactList',
+        name:'ContactList', // normally the name of file
         data(){
             return{
                 contacts : Array
@@ -43,6 +43,9 @@
             this.getContacts();
         },
         methods:{
+
+            // getContacts method Start
+
            async getContacts(){
             let url = 'http://127.0.0.1:8000/api/contacts' ;
             await axios.get(url).then(response => {
@@ -52,6 +55,10 @@
                 console.log(error);
            });
            },
+           
+           // getContacts method Start
+
+            // deleteContact method Start
            async deleteContact(id){
                 let url = `http://127.0.0.1:8000/api/delete_contact/${id}`
                 await axios.delete(url).then(response => {
@@ -62,6 +69,7 @@
                     console.log(error);
                 });
            }
+           // deleteContact method end
         },
         mounted(){
             console.log('Contact List Component Mounted');

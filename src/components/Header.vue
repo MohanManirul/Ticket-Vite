@@ -8,13 +8,24 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <router-link class="nav-link" to="/">Contact List</router-link>
+          <router-link class="nav-link" to="/">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/contact_list">Contact List</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/add_contact">Add Contact</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/about_us">About Us</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/vission">Vission</router-link>
+        </li>
       </ul>
     </div>
+
+   <p>fdfdf</p>
   </div>
 </nav>
     </div>

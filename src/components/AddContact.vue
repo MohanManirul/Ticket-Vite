@@ -41,7 +41,7 @@
 import axios from 'axios';
 
     export default {        
-        name:'AddContact',
+        name:'AddContact', // normally the name of file
         data(){
             return {
                 contact: {},

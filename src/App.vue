@@ -1,17 +1,17 @@
 <template>
-  <Header title="Vue Vite Project" />
+  <Header title="Home" />
   <router-view></router-view>
 </template>
-
 <script>
 import Header from './components/Header.vue'
 export default {
   name:'App',
   components: {
-    Header
+    Header 
     
   }
 };
+
 </script>
 
 <style>
